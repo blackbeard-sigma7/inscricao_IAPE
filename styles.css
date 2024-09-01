@@ -1,0 +1,86 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+   flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 200px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+    opacity: 1;
+}
+
+input, select, button {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button {
+    background-color: rgb(79, 82, 221);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: hsl(234, 71%, 65%);
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#footer {
+  display: flex; /* Transforma o footer em um flex container */
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente   
+ (opcional) */
+ 
+ 
+
+}
+
+#footer img {
+  justify-content: center;
+  
+}
+#mylink {
+    justify-content: center;
+}
+
+#footer a {
+  display: block; /* Garante que o link ocupe toda a largura do footer */
+  text-align: center; /* Centraliza o conteúdo do link */
+  
+  
+}
+
+@media (min-width: 768px) { /* Aplica os estilos abaixo em telas com largura mínima de 768px (tablets e computadores) */
+  #footer img {
+    width: 200px; /* Define uma largura fixa para a imagem em telas maiores */
+    max-width: 80%; /* Limita a largura máxima da imagem a 50% do footer, caso o footer seja muito estreito */
+    
+   
+  }
+}
