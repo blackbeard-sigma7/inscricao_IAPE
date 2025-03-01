@@ -1,0 +1,247 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+   flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 200px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+    opacity: 1;
+}
+
+input, select, button {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button {
+    background-color: rgb(79, 82, 221);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: hsl(234, 71%, 65%);
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#footer {
+  display: flex; /* Transforma o footer em um flex container */
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente   
+ (opcional) */
+ 
+ 
+
+}
+
+#footer img {
+  justify-content: center;
+  
+}
+#mylink {
+    justify-content: center;
+}
+
+#footer a {
+  display: block; /* Garante que o link ocupe toda a largura do footer */
+  text-align: center; /* Centraliza o conteúdo do link */
+  
+  
+}
+
+@media (min-width: 768px) { /* Aplica os estilos abaixo em telas com largura mínima de 768px (tablets e computadores) */
+  #footer img {
+    width: 200px; /* Define uma largura fixa para a imagem em telas maiores */
+    max-width: 80%; /* Limita a largura máxima da imagem a 50% do footer, caso o footer seja muito estreito */
+    
+   
+  }
+}
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.fade-in {
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.back-button {
+  background-color: rgb(123, 53, 151); /* Cor de fundo do botão */
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.back-button:hover {
+  background-color: rgb(156, 82, 144); /* Cor de fundo do botão ao passar o mouse */
+}
+
+.us-flag-button {
+  background: url('us_flag.jpg') no-repeat center center;
+  background-size: cover;
+  color: rgb(255, 255, 255);
+  text-decoration: solid;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px 0;
+}
+
+.bible-page-button {
+  background: url('bible_page.jpg') no-repeat center center;
+  background-size: cover;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px 0;
+}
+.es-flag-button {
+  background: url('es_flag.jpg') no-repeat center center;
+  background-size: cover;
+  color: rgb(255, 255, 255);
+  text-decoration: solid;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px 0;
+}
+.libras-button {
+  background: url('libras_symbol.jpg') no-repeat center center;
+  background-size: cover;
+  color: rgb(255, 255, 255);
+  text-decoration: solid;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px 0;
+}
+.inscreva-se-button {
+  background-color: purple;
+  color: white;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  animation: blink 1s infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes blink {
+  0%, 100% {
+      opacity: 1;
+  }
+  50% {
+      opacity: 0;
+  }
+}
+
+.professor {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+}
+
+.professor:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.professor:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.professor:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.professor-foto {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.professor-info {
+  text-align: left;
+}
+.logo {
+  width: 200px;
+  opacity: 0.7;
+  animation: blink 1.5s infinite; /* Adiciona a animação de cintilação */
+}
+
+@keyframes blink {
+  0%, 100% {
+      opacity: 0.7;
+  }
+  50% {
+      opacity: 1;
+  }
+}
