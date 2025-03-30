@@ -142,12 +142,22 @@
     <h1>Projeto Escola Sabatina - Sala 1</h1>
 
     <div class="perguntas">
-      <div class="pergunta"><span>Quantos estudaram a lição todos os dias?</span><input type="number" id="p1" min="0" value="0"></div>
-      <div class="pergunta"><span>Quantos estudaram a Bíblia todos os dias?</span><input type="number" id="p2" min="0" value="0"></div>
-      <div class="pergunta"><span>Quantos estão fazendo estudo bíblico?</span><input type="number" id="p3" min="0" value="0"></div>
-      <div class="pergunta"><span>Quantos estão fazendo ano bíblico?</span><input type="number" id="p4" min="0" value="0"></div>
-      <div class="pergunta"><span>Quantos testemunharam de Jesus para alguém?</span><input type="number" id="p5" min="0" value="0"></div>
-      <div class="pergunta"><span>Quantos fizeram alguma ajuda humanitária?</span><input type="number" id="p6" min="0" value="0"></div>
+      <div class="pergunta">
+        <span>Quantos estudaram a lição diariamente?</span>
+        <input type="number" id="p1" min="0" value="0">
+      </div>
+      <div class="pergunta">
+        <span>Quantos participaram de um Pequeno Grupo?</span>
+        <input type="number" id="p2" min="0" value="0">
+      </div>
+      <div class="pergunta">
+        <span>Quantos estão dando estudos bíblicos?</span>
+        <input type="number" id="p3" min="0" value="0">
+      </div>
+      <div class="pergunta">
+        <span>Total de pessoas recebendo estudos bíblicos pela unidade de ação (classe)?</span>
+        <input type="number" id="p4" min="0" value="0">
+      </div>
     </div>
 
     <div class="alunos">
@@ -187,9 +197,7 @@
         p1: document.getElementById('p1').value,
         p2: document.getElementById('p2').value,
         p3: document.getElementById('p3').value,
-        p4: document.getElementById('p4').value,
-        p5: document.getElementById('p5').value,
-        p6: document.getElementById('p6').value
+        p4: document.getElementById('p4').value
       };
 
       const alunos = [];
