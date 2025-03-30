@@ -201,7 +201,7 @@
         perguntas,
         alunos
       };
-      console.log('Dados enviados:', dados);
+      console.log('Dados enviados:', JSON.stringify(dados));
 
       fetch('https://script.google.com/macros/s/AKfycbz2noBaMgf5bECuzuNNJRjRciDF2HzlpjmEHuV9ikplxFJp0DyX7Wb-8t3zLNVNEIyD/exec', {
         method: 'POST',
@@ -212,7 +212,7 @@
       })
       .then(response => {
         console.log('Status da resposta:', response.status);
-        if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+        if (!response.ok) throw new Error(`Erro HTTP: ${response.status} - ${response.statusText}`);
         return response.json();
       })
       .then(data => {
