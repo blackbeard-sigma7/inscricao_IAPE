@@ -203,25 +203,20 @@
       };
       console.log('Dados enviados:', JSON.stringify(dados));
 
-      fetch('https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbz2noBaMgf5bECuzuNNJRjRciDF2HzlpjmEHuV9ikplxFJp0DyX7Wb-8t3zLNVNEIyD/exec', {
-        method: 'POST',
-        body: JSON.stringify(dados),
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(response => {
-        console.log('Status da resposta:', response.status);
-        if (!response.ok) throw new Error(`Erro HTTP: ${response.status} - ${response.statusText}`);
-        return response.json();
-      })
-      .then(data => {
-        console.log('Resposta do Web App:', data);
-        alert('Dados enviados com sucesso!');
-      })
-      .catch(error => {
-        console.error('Erro detalhado:', error);
-        alert('Erro ao enviar: ' + error.message);
-      });
-    });
+      fetch('https://script.google.com/macros/s/AKfycbz2noBaMgf5bECuzuNNJRjRciDF2HzlpjmEHuV9ikplxFJp0DyX7Wb-8t3zLNVNEIyD/exec', {
+  method: 'POST',
+  body: JSON.stringify(dados),
+  headers: { 'Content-Type': 'application/json' },
+  mode: 'no-cors'
+})
+.then(() => {
+  console.log('Dados enviados (sem resposta devido a no-cors)');
+  alert('Dados enviados com sucesso!');
+})
+.catch(error => {
+  console.error('Erro detalhado:', error);
+  alert('Erro ao enviar: ' + error.message);
+});
   </script>
 </body>
 </html>
