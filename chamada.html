@@ -159,10 +159,10 @@
   </div>
 
   <script>
-    // Carregar nomes dos alunos da planilha
-    const SHEET_ID = '1lIdC6M-k11jcXBo_laHKTpkJ4BTfKFpBXKeUylmCOEg'; // Substitua pelo ID da planilha "Lista de Alunos"
-    const API_KEY = 'AIzaSyBuxhNxlYcLM88G6BggpNO8XG8w2BY9vSE'; // Sua chave de API
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/B2:B70?key=${API_KEY}`;
+    // Carregar nomes dos alunos
+    const SHEET_ID = '1lIdC6M-k11jcXBo_laHKTpkJ4BTfKFpBXKeUylmCOEg';
+    const API_KEY = 'AIzaSyBuxhNxlYcLM88G6BggpNO8XG8w2BY9vSE';
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/B2:B60?key=${API_KEY}`;
 
     fetch(url)
       .then(response => response.json())
@@ -201,16 +201,28 @@
         perguntas,
         alunos
       };
-      console.log(dados); // Para teste
+      console.log('Dados enviados:', dados);
 
       fetch('https://script.google.com/macros/s/AKfycbz2noBaMgf5bECuzuNNJRjRciDF2HzlpjmEHuV9ikplxFJp0DyX7Wb-8t3zLNVNEIyD/exec', {
         method: 'POST',
         body: JSON.stringify(dados),
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'cors',
+        redirect: 'follow'
       })
-      .then(response => response.json())
-      .then(data => alert('Dados enviados com sucesso!'))
-      .catch(error => alert('Erro ao enviar: ' + error));
+      .then(response => {
+        console.log('Status da resposta:', response.status);
+        if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+        return response.json();
+      })
+      .then(data => {
+        console.log('Resposta do Web App:', data);
+        alert('Dados enviados com sucesso!');
+      })
+      .catch(error => {
+        console.error('Erro detalhado:', error);
+        alert('Erro ao enviar: ' + error.message);
+      });
     });
   </script>
 </body>
