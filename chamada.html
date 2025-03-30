@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projeto Escola Sabatina</title>
+  <title>Projeto Escola Sabatina - Sala 1</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -139,7 +139,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Projeto Escola Sabatina</h1>
+    <h1>Projeto Escola Sabatina - Sala 1</h1>
 
     <div class="perguntas">
       <div class="pergunta"><span>Quantos estudaram a lição todos os dias?</span><input type="number" id="p1" min="0" value="0"></div>
@@ -159,11 +159,14 @@
   </div>
 
   <script>
-    // Carregar nomes dos alunos
-    const SHEET_ID = '1lIdC6M-k11jcXBo_laHKTpkJ4BTfKFpBXKeUylmCOEg';
+    // Configurações da sala
+    const SHEET_ID = '1lIdC6M-k11jcXBo_laHKTpkJ4BTfKFpBXKeUylmCOEg'; // Planilha com os nomes dos alunos
     const API_KEY = 'AIzaSyBuxhNxlYcLM88G6BggpNO8XG8w2BY9vSE';
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/B2:B60?key=${API_KEY}`;
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz2noBaMgf5bECuzuNNJRjRciDF2HzlpjmEHuV9ikplxFJp0DyX7Wb-8t3zLNVNEIyD/exec'; // URL do Web App
+    const RANGE = 'B2:B60'; // Intervalo dos nomes dos alunos
 
+    // Carregar nomes dos alunos
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`;
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -203,20 +206,21 @@
       };
       console.log('Dados enviados:', JSON.stringify(dados));
 
-      fetch('https://script.google.com/macros/s/AKfycbz2noBaMgf5bECuzuNNJRjRciDF2HzlpjmEHuV9ikplxFJp0DyX7Wb-8t3zLNVNEIyD/exec', {
-  method: 'POST',
-  body: JSON.stringify(dados),
-  headers: { 'Content-Type': 'application/json' },
-  mode: 'no-cors'
-})
-.then(() => {
-  console.log('Dados enviados (sem resposta devido a no-cors)');
-  alert('Dados enviados com sucesso!');
-})
-.catch(error => {
-  console.error('Erro detalhado:', error);
-  alert('Erro ao enviar: ' + error.message);
-});
+      fetch(WEB_APP_URL, {
+        method: 'POST',
+        body: JSON.stringify(dados),
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors'
+      })
+      .then(() => {
+        console.log('Dados enviados (sem resposta devido a no-cors)');
+        alert('Dados enviados com sucesso!');
+      })
+      .catch(error => {
+        console.error('Erro detalhado:', error);
+        alert('Erro ao enviar: ' + error.message);
+      });
+    });
   </script>
 </body>
 </html>
