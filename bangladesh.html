@@ -3,267 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="bangladesh.ico" type="image/x-icon">
   <title>Bangladesh</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #1a1a1a;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-    h1 {
-      color: #9b59b6;
-      font-size: 1.8em;
-      margin: 15px 0;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-    .container {
-      width: 100%;
-      max-width: 600px;
-      padding: 10px;
-    }
-    .perguntas, .alunos {
-      background-color: #2c2c2c;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    .pergunta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 10px 0;
-      font-size: 1em;
-      flex-wrap: wrap;
-    }
-    .pergunta span {
-      flex: 1;
-      margin-right: 10px;
-    }
-    .pergunta input {
-      width: 60px;
-      height: 40px;
-      padding: 5px;
-      background-color: #3d3d3d;
-      border: 1px solid #9b59b6;
-      color: #ffffff;
-      border-radius: 5px;
-      text-align: center;
-      font-size: 1.1em;
-    }
-    .alunos h2 {
-      color: #2ecc71;
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
-    .aluno {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 0;
-      border-bottom: 1px solid #3d3d3d;
-    }
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 26px;
-    }
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #e74c3c;
-      transition: 0.4s;
-      border-radius: 26px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 20px;
-      width: 20px;
-      left: 3px;
-      bottom: 3px;
-      background-color: #ffffff;
-      transition: 0.4s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background-color: #2ecc71;
-    }
-    input:checked + .slider:before {
-      transform: translateX(24px);
-    }
-    #enviar {
-      background-color: #9b59b6;
-      color: #ffffff;
-      padding: 12px 40px;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin: 15px 0;
-      width: 100%;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: background-color 0.3s;
-    }
-    #enviar:hover {
-      background-color: #8e44ad;
-    }
-    .resultado {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      font-size: 1.5em;
-      padding: 20px;
-      border-radius: 8px;
-      width: 80%;
-      max-width: 500px;
-    }
-    .sucesso {
-      background-color: #2ecc71;
-      color: #ffffff;
-    }
-    .erro {
-      background-color: #e74c3c;
-      color: #ffffff;
-    }
-    @media (max-width: 600px) {
-      h1 { font-size: 1.5em; }
-      .pergunta { font-size: 0.9em; flex-direction: column; align-items: flex-start; }
-      .pergunta input { margin-top: 5px; }
-      .aluno { font-size: 0.9em; }
-      .switch { width: 45px; height: 24px; }
-      .slider:before { height: 18px; width: 18px; }
-      input:checked + .slider:before { transform: translateX(21px); }
-      .resultado { font-size: 1.2em; }
-    }
-  </style>
+  <link rel="stylesheet" href="styleApontamento.css">
 </head>
 <body>
   <div class="container">
     <h1>Apontamento Bangladesh</h1>
 
-    <div class="perguntas">
-      <div class="pergunta">
-        <span>Quantos estudaram a lição diariamente?</span>
-        <input type="number" id="p1" min="0" value="0">
+   <div class="perguntas">
+          <div class="pergunta">
+            <span>Quantos estudaram a lição diariamente?</span>
+            <input type="number" id="p1" min="0" value="0">
+          </div>
+          <div class="pergunta">
+            <span>Quantos participaram de um Pequeno Grupo?</span>
+            <input type="number" id="p2" min="0" value="0">
+          </div>
+          <div class="pergunta">
+            <span>Quantos estão dando estudos bíblicos?</span>
+            <input type="number" id="p3" min="0" value="0">
+          </div>
+          <div class="pergunta">
+            <span>Quantos fizeram ações solidárias?</span>
+            <input type="number" id="p4" min="0" value="0">
+          </div>
+          <div class="pergunta">
+            <span>Total de pessoas recebendo estudos bíblicos pela unidade de ação (classe)?</span>
+            <input type="number" id="p5" min="0" value="0">
+          </div>
+        </div>
+    
+        <div class="alunos">
+          <h2>Presença dos Alunos</h2>
+          <div id="lista-alunos"></div>
+        </div>
+    
+        <button id="enviar">Enviar</button>
       </div>
-      <div class="pergunta">
-        <span>Quantos participaram de um Pequeno Grupo?</span>
-        <input type="number" id="p2" min="0" value="0">
-      </div>
-      <div class="pergunta">
-        <span>Quantos estão dando estudos bíblicos?</span>
-        <input type="number" id="p3" min="0" value="0">
-      </div>
-      <div class="pergunta">
-        <span>Quantos fizeram ações solidárias?</span>
-        <input type="number" id="p4" min="0" value="0">
-      </div>
-      <div class="pergunta">
-        <span>Total de pessoas recebendo estudos bíblicos pela unidade de ação (classe)?</span>
-        <input type="number" id="p5" min="0" value="0">
-      </div>
-    </div>
-
-    <div class="alunos">
-      <h2>Presença dos Alunos</h2>
-      <div id="lista-alunos"></div>
-    </div>
-
-    <button id="enviar">Enviar</button>
-  </div>
-
-  <script>
-    // Configurações da sala
-    const SHEET_ID = '1LsIcCg_1ajky-x6j6UmxRBa-8inUY9qHjEUj5e_3y_0'; // Planilha com os nomes dos alunos
-    const API_KEY = 'AIzaSyBuxhNxlYcLM88G6BggpNO8XG8w2BY9vSE';
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyTUKi2j-xEqF_qwkwI180jiluzTwXsNs7lqS1eF0v6JVmtku7aLmuf5qKpuEcNqSFr/exec'; // URL do Web App
-    const RANGE = 'B2:B60'; // Intervalo dos nomes dos alunos
-
-    // Carregar nomes dos alunos
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const alunos = data.values.flat();
-        const listaAlunos = document.getElementById('lista-alunos');
-        alunos.forEach(nome => {
+    
+      <script>
+        // Configurações da sala
+        const SHEET_ID = '1LsIcCg_1ajky-x6j6UmxRBa-8inUY9qHjEUj5e_3y_0'; // Planilha com os nomes dos alunos
+        const API_KEY = 'AIzaSyBuxhNxlYcLM88G6BggpNO8XG8w2BY9vSE';
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyJnuzCSdIgANLDf4iwgbS-tPzg0muWiGheDDRwabQPztF0fPCNvScsvagByJLayZBI/exec'; // Nova URL do Web App (será usada para presenças e perguntas)
+        const RANGE = 'B2:B60'; // Intervalo dos nomes dos alunos
+    
+        // Carregar nomes dos alunos
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`;
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            const alunos = data.values.flat();
+            const listaAlunos = document.getElementById('lista-alunos');
+            alunos.forEach(nome => {
+              const div = document.createElement('div');
+              div.className = 'aluno';
+              div.innerHTML = `${nome} <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>`;
+              listaAlunos.appendChild(div);
+            });
+          })
+          .catch(error => console.error('Erro ao carregar alunos:', error));
+    
+        // Função para mostrar mensagem de resultado
+        function mostrarResultado(mensagem, tipo) {
+          document.body.innerHTML = ''; // Limpa a tela
           const div = document.createElement('div');
-          div.className = 'aluno';
-          div.innerHTML = `${nome} <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>`;
-          listaAlunos.appendChild(div);
+          div.className = `resultado ${tipo}`;
+          div.textContent = mensagem;
+          document.body.appendChild(div);
+        }
+    
+        // Enviar dados
+        document.getElementById('enviar').addEventListener('click', function() {
+          const perguntas = {
+            p1: document.getElementById('p1').value,
+            p2: document.getElementById('p2').value,
+            p3: document.getElementById('p3').value,
+            p4: document.getElementById('p4').value,
+            p5: document.getElementById('p5').value
+          };
+    
+          const alunos = [];
+          document.querySelectorAll('.aluno').forEach(aluno => {
+            const nome = aluno.childNodes[0].textContent.trim();
+            const presente = aluno.querySelector('input').checked ? 1 : 0; // 1 para presente, 0 para ausente
+            alunos.push({ nome, presente });
+          });
+    
+          const dados = {
+            data: new Date().toISOString(),
+            perguntas,
+            alunos
+          };
+    
+          console.log('Dados enviados:', JSON.stringify(dados));
+    
+          // Enviar tudo para o mesmo Web App
+          fetch(WEB_APP_URL, {
+            method: 'POST',
+            body: JSON.stringify(dados),
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'no-cors'
+          })
+          .then(() => {
+            console.log('Dados enviados (sem resposta devido a no-cors)');
+            mostrarResultado('Dados enviados com sucesso! \uD83C\uDDEC\uD83C\uDDF7', 'sucesso');
+          })
+          .catch(error => {
+            console.error('Erro detalhado:', error);
+            mostrarResultado('O servidor está fora do ar, por favor faça manual e envie os dados pro Diretor da Escola Sabatina.', 'erro');
+          });
         });
-      })
-      .catch(error => console.error('Erro ao carregar alunos:', error));
-
-    // Função para mostrar mensagem de resultado
-    function mostrarResultado(mensagem, tipo) {
-      document.body.innerHTML = ''; // Limpa a tela
-      const div = document.createElement('div');
-      div.className = `resultado ${tipo}`;
-      div.textContent = mensagem;
-      document.body.appendChild(div);
-    }
-
-    // Enviar dados
-    document.getElementById('enviar').addEventListener('click', function() {
-      const perguntas = {
-        p1: document.getElementById('p1').value,
-        p2: document.getElementById('p2').value,
-        p3: document.getElementById('p3').value,
-        p4: document.getElementById('p4').value,
-        p5: document.getElementById('p5').value
-      };
-
-      const alunos = [];
-      document.querySelectorAll('.aluno').forEach(aluno => {
-        const nome = aluno.childNodes[0].textContent.trim();
-        const presente = aluno.querySelector('input').checked ? 'Sim' : 'Não';
-        alunos.push({ nome, presente });
-      });
-
-      const dados = {
-        data: new Date().toISOString(),
-        perguntas,
-        alunos
-      };
-      console.log('Dados enviados:', JSON.stringify(dados));
-
-      fetch(WEB_APP_URL, {
-        method: 'POST',
-        body: JSON.stringify(dados),
-        headers: { 'Content-Type': 'application/json' },
-        mode: 'no-cors'
-      })
-      .then(() => {
-        console.log('Dados enviados (sem resposta devido a no-cors)');
-        mostrarResultado('Dados enviados com sucesso!', 'sucesso');
-      })
-      .catch(error => {
-        console.error('Erro detalhado:', error);
-        mostrarResultado('O servidor está fora do ar, por favor faça manual e envie os dados pro Diretor da Escola Sabatina.', 'erro');
-      });
-    });
-  </script>
+      </script>
 </body>
 </html>
