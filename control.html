@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="icon" href="ea_nlx_icon.ico" type="image/x-icon">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle das Classes</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    h1 {
+      color: #9b59b6;
+      font-size: 2em;
+      margin: 20px 0;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .container {
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
+    }
+    .classe {
+      background-color: #2c2c2c;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .classe-nome {
+      font-size: 1.2em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .botoes {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .botao {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: bold;
+      transition: transform 0.1s, box-shadow 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .botao:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .apontamento {
+      background-color: #9b59b6; /* Roxo */
+    }
+    .lista-alunos {
+      background-color: #2ecc71; /* Verde */
+    }
+    .forms {
+      background-color: #3498db; /* Vermelho */
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5em; }
+      .classe { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .classe-nome { font-size: 1em; }
+      .botao { padding: 8px 15px; font-size: 0.9em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Controle das Classes</h1>
+
+    <div class="classe">
+      <div class="classe-nome">🇶🇦 Qatar</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/qatar.html" target="_blank" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1lIdC6M-k11jcXBo_laHKTpkJ4BTfKFpBXKeUylmCOEg/edit?resourcekey=&gid=249999643#gid=249999643" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1VGDDCd25EQxmascT_Dum9CAO_vak0S_Cno9lfF8CZy4/edit" target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇧🇩 Bangladesh</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/bangladesh.html" target="_blank" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1LsIcCg_1ajky-x6j6UmxRBa-8inUY9qHjEUj5e_3y_0/edit?resourcekey=&gid=450586622#gid=450586622" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1h5zr3eRZDYP933oQDmozgro-YmAM7jyXwkbxG2cxp-k/edit#responses" target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇬🇷 Grécia</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/grecia" target="_blank" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1CEN2MdTnCYkl895cdlxU0nZ5Y2SICxiH6GO0dwGxxsI/edit?resourcekey=&gid=1034894977#gid=1034894977" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1PQtPM9BlAatPvMv9vyNeeJu6k4PA2fgMJZJFfcGmDnI/edit" target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇹🇷 Turquia</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/turquia.html" target="_blank" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1tCbx9JZRZxoSqS3Gent4nXIRpjEExuyz6aEeORFPCGY/edit?resourcekey=&gid=462691957#gid=462691957" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1w9ireRu_DBXrOklbJK5ay_iS5a2fSfObDosRfr7hvBU/edit" target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇸🇾 Síria</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/siria" target="_blank" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1SHbq_MVXMb3wMf6_owh4foQbArDyAxT9ktaEMhCNTiM/edit?resourcekey=&gid=1521328053#gid=1521328053" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1ZukJPHesVWT_HYSruUFkfDehcu8jB50Gs8mb0HaUvlk/edit" target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇪🇬 Egito</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/egito" target="_blank" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1D1ZA_FmrjiKwXESjvO8dAocpq4FpC8kMYUsYcLRmKWo/edit?resourcekey=&gid=1640660841#gid=1640660841" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/11i-psjKWcfCP1n9R6VmugvlgcDcxgBenRIHZZTNZQaU/edit" target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇮🇳 Índia</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/india" target="_blank" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1ZIUxsHZmiMc-iSVw3TuAGsIycxRck2WaPqk2yB-isCw/edit?resourcekey=&gid=1662562#gid=1662562" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1LD06d8zNDkNv91KRbcaoA7h0GbJyoQ1M_klqj5GfMkY/edit" target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇮🇷 Irã   (ancioes 1)</div>
+      <div class="botoes">
+        <a href="#" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/15YDTdt_Uo_G3S_o9AlrqBfaTJixyaHkkKGDJ-yTu3sQ/edit?resourcekey=&gid=1479169874#gid=1479169874" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/110IjZWX-Z6AiXx5OeIWGYxHSYt2ofikzxtHmniQGpes/edit" target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇮🇶 Iraque    (ancioes 2)</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/iraque" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1pC_w_QRHQzhitR_Ei3ZcO3JkjKsQTnzI_b2CP6KLkWE/edit?resourcekey=&gid=1513542729#gid=1513542729" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1Jvv43C9-JwKdHRQrWak_6zXWbf_6j0ZjZjW0ldAtcnI/edit" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇱🇧 Líbano</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/libano" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1NpQnifb6TvK8vudd82zt_-iVCzrssOvYziC774NtgT8/edit?resourcekey=&gid=840781786#gid=840781786" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1G-SmrBHTPAD5PI8vP4X7Fd43BKzqM5BV0Ctwt-opfqQ/edit" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇯🇴 Jordânia</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/jordania" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1NpQnifb6TvK8vudd82zt_-iVCzrssOvYziC774NtgT8/edit?resourcekey=&gid=840781786#gid=840781786" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1G-SmrBHTPAD5PI8vP4X7Fd43BKzqM5BV0Ctwt-opfqQ/edit"  target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇮🇱 Israel</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/english-israel.html" target="_blank" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1sG3tS4OjviIjfEWiR4VegRvAP4T6ZQFoawYYT-UVV-0/edit?resourcekey=&gid=2054765450#gid=2054765450" target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1jahtxOc-ELagsj5m2ypuWd6SKslmBPfkyfhqsCduODU/edit" target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+
+    <div class="classe">
+      <div class="classe-nome">🇧🇯 Benin</div>
+      <div class="botoes">
+        <a href="https://blackbeard-sigma7.github.io/inscricao_IAPE/benin" target="_blank" class="botao apontamento">Apontamento</a>
+        <a href="https://docs.google.com/spreadsheets/d/1Y144G9hoGGaflK82cjyldv1DfpYtgSTFcWjLN1GErWc/edit?resourcekey=&gid=974288670#gid=974288670"  target="_blank" class="botao lista-alunos">Lista de Alunos</a>
+        <a href="https://docs.google.com/forms/d/1B6PBiXHbI2aI3zLE54TZrQzLou44WSyh9dBmXVGtCII/edit" target="_blank" class="botao forms">FORMS</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
