@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="india.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India</title>
+  <link rel="stylesheet" href="styleApontamento.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Apontamento India</h1>
+
+    <div class="perguntas">
+      <div class="pergunta">
+        <span>Quantos estudaram a lição diariamente?</span>
+        <input type="number" id="p1" min="0" value="0">
+      </div>
+      <div class="pergunta">
+        <span>Quantos participaram de um Pequeno Grupo?</span>
+        <input type="number" id="p2" min="0" value="0">
+      </div>
+      <div class="pergunta">
+        <span>Quantos estão dando estudos bíblicos?</span>
+        <input type="number" id="p3" min="0" value="0">
+      </div>
+      <div class="pergunta">
+        <span>Quantos fizeram ações solidárias?</span>
+        <input type="number" id="p4" min="0" value="0">
+      </div>
+      <div class="pergunta">
+        <span>Total de pessoas recebendo estudos bíblicos pela unidade de ação (classe)?</span>
+        <input type="number" id="p5" min="0" value="0">
+      </div>
+    </div>
+
+    <div class="alunos">
+      <h2>Presença dos Alunos</h2>
+      <div id="lista-alunos"></div>
+    </div>
+
+    <button id="enviar">Enviar</button>
+  </div>
+
+  <script>
+    // Configurações da sala
+    const SHEET_ID = '1ZIUxsHZmiMc-iSVw3TuAGsIycxRck2WaPqk2yB-isCw'; // nomes dos alunos
+    const API_KEY = 'AIzaSyBuxhNxlYcLM88G6BggpNO8XG8w2BY9vSE';
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyXwq1NUphynj1LAzR0Ksr3TvjCTWrlyvrRhKn7DQg76XmHwxWX0j5bKTL-qektoBiKEg/exec'; // Substitua pela URL do Web App do Egito
+    const RANGE = 'B2:B60';
+
+    // Carregar nomes dos alunos
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const alunos = data.values.flat();
+        const listaAlunos = document.getElementById('lista-alunos');
+        alunos.forEach(nome => {
+          const div = document.createElement('div');
+          div.className = 'aluno';
+          div.innerHTML = `${nome} <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>`;
+          listaAlunos.appendChild(div);
+        });
+      })
+      .catch(error => console.error('Erro ao carregar alunos:', error));
+
+    // Função para mostrar mensagem de resultado
+    function mostrarResultado(mensagem, tipo) {
+      document.body.innerHTML = '';
+      const div = document.createElement('div');
+      div.className = `resultado ${tipo}`;
+      div.textContent = mensagem;
+      document.body.appendChild(div);
+    }
+
+    // Enviar dados
+    document.getElementById('enviar').addEventListener('click', async function() {
+      const perguntas = {
+        p1: document.getElementById('p1').value,
+        p2: document.getElementById('p2').value,
+        p3: document.getElementById('p3').value,
+        p4: document.getElementById('p4').value,
+        p5: document.getElementById('p5').value
+      };
+
+      const alunos = [];
+      document.querySelectorAll('.aluno').forEach(aluno => {
+        const nome = aluno.childNodes[0].textContent.trim();
+        const presente = aluno.querySelector('input').checked ? 1 : 0;
+        alunos.push({ nome, presente });
+      });
+
+      const dados = {
+        data: new Date().toISOString(),
+        perguntas,
+        alunos
+      };
+
+      console.log('Dados enviados:', JSON.stringify(dados));
+
+      try {
+        const response = await fetch(WEB_APP_URL, {
+          method: 'POST',
+          body: JSON.stringify(dados),
+          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors'
+        });
+        console.log('Dados enviados (sem resposta devido a no-cors)');
+        mostrarResultado('Dados enviados com sucesso!', 'sucesso');
+      } catch (error) {
+        console.error('Erro detalhado:', error);
+        mostrarResultado('O servidor está fora do ar, por favor faça manual e envie os dados pro Diretor da Escola Sabatina.', 'erro');
+      }
+    });
+  </script>
+</body>
+</html>
