@@ -39,33 +39,118 @@
       <div id="lista-alunos"></div>
     </div>
 
+    <!-- NOVO: adicionar vários alunos e só então enviar -->
+    <div class="novo-aluno">
+      <h3>Adicionar novos alunos</h3>
+      <div class="linha-add">
+        <input type="text" id="novo-aluno-input" placeholder="Nome do aluno">
+        <button id="add-aluno-btn" type="button">+</button>
+      </div>
+      <ul id="lista-novos"></ul>
+      <button id="adicionar-alunos" type="button">adicionar aluno na classe</button>
+    </div>
+
     <button id="enviar">Enviar</button>
   </div>
 
   <script>
-    // Configurações da sala
-    const SHEET_ID = '1LsIcCg_1ajky-x6j6UmxRBa-8inUY9qHjEUj5e_3y_0'; // nomes dos alunos
+    // Configurações
+    const SHEET_ID = '1LsIcCg_1ajky-x6j6UmxRBa-8inUY9qHjEUj5e_3y_0'; // Spreadsheet de NOMES
     const API_KEY = 'AIzaSyBuxhNxlYcLM88G6BggpNO8XG8w2BY9vSE';
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzQJy0yOBgd1UUe6BAhy7rXb9idosMdgrxXwYl2Jp3gGS3XMdJWttQo_De_oZj65wRk/exec'; // Substitua pela URL do Web App do Egito
-    const RANGE = 'B2:B60';
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzQJy0yOBgd1UUe6BAhy7rXb9idosMdgrxXwYl2Jp3gGS3XMdJWttQo_De_oZj65wRk/exec';
+    const RANGE = 'B2:B'; // aberto: vai até o fim
 
     // Carregar nomes dos alunos
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const alunos = data.values.flat();
-        const listaAlunos = document.getElementById('lista-alunos');
+    async function carregarAlunos() {
+      const listaAlunos = document.getElementById('lista-alunos');
+      listaAlunos.innerHTML = '<em>Carregando...</em>';
+      try {
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${encodeURIComponent(RANGE)}?key=${API_KEY}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        const alunos = (data.values || []).flat().map(n => n.trim()).filter(n => n);
+
+        listaAlunos.innerHTML = '';
         alunos.forEach(nome => {
           const div = document.createElement('div');
           div.className = 'aluno';
-          div.innerHTML = `${nome} <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>`;
+          div.innerHTML = `
+            <span class="nome">${nome}</span>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </label>`;
           listaAlunos.appendChild(div);
         });
-      })
-      .catch(error => console.error('Erro ao carregar alunos:', error));
+      } catch (error) {
+        console.error('Erro ao carregar alunos:', error);
+        listaAlunos.textContent = 'Erro ao carregar alunos.';
+      }
+    }
+    carregarAlunos();
 
-    // Função para mostrar mensagem de resultado
+    // UI de novos alunos
+    const novosAlunos = [];
+    const inputNovo = document.getElementById('novo-aluno-input');
+    const btnAddNovo = document.getElementById('add-aluno-btn');
+    const ulNovos = document.getElementById('lista-novos');
+
+    function renderListaNovos() {
+      ulNovos.innerHTML = '';
+      novosAlunos.forEach((nome, idx) => {
+        const li = document.createElement('li');
+        li.textContent = nome + ' ';
+        const rm = document.createElement('button');
+        rm.type = 'button';
+        rm.title = 'Remover';
+        rm.textContent = '×';
+        rm.addEventListener('click', () => {
+          novosAlunos.splice(idx, 1);
+          renderListaNovos();
+        });
+        li.appendChild(rm);
+        ulNovos.appendChild(li);
+      });
+    }
+
+    btnAddNovo.addEventListener('click', () => {
+      const nome = inputNovo.value.trim();
+      if (!nome) return;
+      novosAlunos.push(nome);
+      inputNovo.value = '';
+      inputNovo.focus();
+      renderListaNovos();
+    });
+
+    inputNovo.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') btnAddNovo.click();
+    });
+
+    // Enviar novos alunos para o Apps Script
+    document.getElementById('adicionar-alunos').addEventListener('click', async () => {
+      if (!novosAlunos.length) {
+        alert('Adicione pelo menos um aluno com o botão +.');
+        return;
+      }
+      try {
+        await fetch(WEB_APP_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors',
+          body: JSON.stringify({ acao: 'adicionarAlunos', novosAlunos })
+        });
+        // Após adicionar, recarrega a lista oficial e limpa a fila
+        await carregarAlunos();
+        novosAlunos.length = 0;
+        renderListaNovos();
+        alert('Alunos adicionados!');
+      } catch (error) {
+        console.error('Erro ao adicionar alunos:', error);
+        alert('Ocorreu um erro ao adicionar. Tente novamente.');
+      }
+    });
+
+    // Mostrar mensagem de resultado (mantida)
     function mostrarResultado(mensagem, tipo) {
       document.body.innerHTML = '';
       const div = document.createElement('div');
@@ -74,7 +159,7 @@
       document.body.appendChild(div);
     }
 
-    // Enviar dados
+    // Enviar presença + perguntas
     document.getElementById('enviar').addEventListener('click', async function() {
       const perguntas = {
         p1: document.getElementById('p1').value,
@@ -85,28 +170,23 @@
       };
 
       const alunos = [];
-      document.querySelectorAll('.aluno').forEach(aluno => {
-        const nome = aluno.childNodes[0].textContent.trim();
+      document.querySelectorAll('#lista-alunos .aluno').forEach(aluno => {
+        const nome = aluno.querySelector('.nome').textContent.trim();
         const presente = aluno.querySelector('input').checked ? 1 : 0;
         alunos.push({ nome, presente });
       });
 
-      const dados = {
-        data: new Date().toISOString(),
-        perguntas,
-        alunos
-      };
+      const dados = { acao: 'registrarApontamento', data: new Date().toISOString(), perguntas, alunos };
 
       console.log('Dados enviados:', JSON.stringify(dados));
 
       try {
-        const response = await fetch(WEB_APP_URL, {
+        await fetch(WEB_APP_URL, {
           method: 'POST',
           body: JSON.stringify(dados),
           headers: { 'Content-Type': 'application/json' },
           mode: 'no-cors'
         });
-        console.log('Dados enviados (sem resposta devido a no-cors)');
         mostrarResultado('Dados enviados com sucesso!', 'sucesso');
       } catch (error) {
         console.error('Erro detalhado:', error);
