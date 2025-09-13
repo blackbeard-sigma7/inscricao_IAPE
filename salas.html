@@ -7,10 +7,10 @@
   <title>Sala do 3º Ano — Jovens & Adolescentes</title>
   <style>
     :root{
-      --bg: #0e1116;          /* fundo escuro para projetor */
-      --card: #eaf7f1;        /* cartão claro para contraste forte */
-      --ink: #0c1220;         /* texto principal */
-      --accent: #7c3aed;      /* roxo de destaque */
+      --bg: #0e1116;          /* fundo para projetor */
+      --card: #eaf7f1;        /* cartão claro */
+      --ink: #0c1220;         /* texto */
+      --accent: #7c3aed;      /* destaque */
       --accent-ink: #ffffff;
       --radius: 20px;
     }
@@ -20,33 +20,34 @@
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       background: var(--bg);
       color: var(--ink);
-      overflow: hidden;              /* sem barras no desktop */
+      overflow: hidden; /* sem barras no desktop */
     }
 
-    /* Área principal centrada */
+    /* Palco com duas colunas: card grande + coluna do código de barras */
     .stage{
       height: 100%;
       width: 100%;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr clamp(260px, 22vw, 420px);
+      gap: 2vw;
       align-items: center;
-      justify-content: center;
-      padding: 2vh 2vw;              /* pequena margem de respiro */
+      justify-items: center;
+      padding: 2vh 2vw;
     }
 
-    /* Card gigante: ocupa quase toda a tela */
+    /* Card principal (agora não ocupa 100% para sobrar espaço à direita) */
     .classe{
       background: var(--card);
       border-radius: var(--radius);
       box-shadow: 0 20px 60px rgba(0,0,0,.45);
-      width: min(96vw, 1800px);
-      min-height: min(90vh, 1000px);
+      width: min(72vw, 1400px);      /* grande, mas deixa espaço pro código */
+      min-height: min(86vh, 900px);
       padding: clamp(20px, 3vw, 48px);
       display: grid;
       grid-template-rows: auto 1fr auto;
       gap: clamp(16px, 2.2vw, 28px);
     }
 
-    /* Faixa de “Jovens & Adolescentes — juntos” */
     .tag{
       display: inline-block;
       align-self: start;
@@ -62,25 +63,20 @@
     .classe-nome{
       font-weight: 800;
       line-height: 1.1;
-      font-size: clamp(28px, 5vw, 72px); /* bem grande no projetor */
+      font-size: clamp(28px, 4.6vw, 64px);
       letter-spacing: .4px;
       margin-top: clamp(6px, .6vw, 10px);
     }
-
     .info{
       display: grid;
       align-content: start;
       gap: clamp(14px, 1.8vw, 22px);
       margin-top: clamp(10px, 1.2vw, 16px);
-      font-size: clamp(18px, 3.2vw, 40px); /* linhas grandes e legíveis */
+      font-size: clamp(18px, 3vw, 36px);
       line-height: 1.25;
     }
-    .info strong{
-      color: var(--accent);
-      font-weight: 800;
-    }
+    .info strong{ color: var(--accent); font-weight: 800; }
 
-    /* Rodapé opcional (pode remover se quiser ainda mais área útil) */
     .foot{
       display: flex;
       justify-content: space-between;
@@ -89,30 +85,88 @@
       opacity: .8;
     }
 
-    /* Em telas pequenas, permitir rolagem para não cortar nada */
-    @media (max-width: 768px){
+    /* Coluna do código de barras */
+    .barcode-panel{
+      height: min(86vh, 900px);
+      width: 100%;
+      background: #151a23;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      padding: clamp(16px, 2vw, 24px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: clamp(10px, 1.2vw, 16px);
+      color: #e9eef7;
+    }
+    .barcode-title{
+      font-weight: 700;
+      font-size: clamp(16px, 1.8vw, 22px);
+      letter-spacing: .3px;
+      text-align: center;
+    }
+    .barcode-wrap{
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #0f141d;
+      padding: clamp(10px, 1.2vw, 16px);
+    }
+    .barcode{
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      object-fit: contain;     /* mantém proporção do arquivo */
+      image-rendering: auto;
+      filter: contrast(1.05);
+    }
+    .barcode-caption{
+      text-align: center;
+      font-size: clamp(12px, 1.2vw, 16px);
+      opacity: .85;
+    }
+
+    /* Responsivo: em telas pequenas, empilha (ou oculte o código se quiser) */
+    @media (max-width: 900px){
       body{ overflow: auto; }
-      .classe{ min-height: auto; width: 100%; }
+      .stage{
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+      }
+      .classe{
+        width: 100%;
+        min-height: auto;
+      }
+      /* Se quiser ocultar o código no mobile, descomente a linha abaixo */
+      /* .barcode-panel{ display: none; } */
     }
   </style>
 </head>
 <body>
   <main class="stage">
+    <!-- Card grande -->
     <section class="classe" aria-label="Sala do 3º Ano">
       <span class="tag">Jovens & Adolescentes — juntos</span>
-
       <h1 class="classe-nome">Egito — Sala do 3º Ano</h1>
-
       <div class="info">
         <div><strong>Sala:</strong> 3º Ano</div>
         <div><strong>Professores:</strong> Agno e Soraia</div>
       </div>
-
       <div class="foot">
         <span>Exibição otimizada para projetor/datashow</span>
-        <span>Use Ctrl + / − para ajustar o zoom, se necessário</span>
+        <span>Use Ctrl + / − para ajustar o zoom</span>
       </div>
     </section>
+
+    <!-- Coluna para Código de Barras -->
+    <aside class="barcode-panel" aria-label="Código de barras">
+      <div class="barcode-title">Código de Barras</div>
+      <div class="barcode-wrap">
+        <!-- Substitua pelo seu arquivo -->
+        <img class="barcode" src="codigo-barras.png" alt="Código de barras da sala/atividade" />
+      </div>
+      <div class="barcode-caption">Aproxime o leitor para capturar</div>
+    </aside>
   </main>
 </body>
 </html>
